@@ -1,4 +1,5 @@
 import '../stylesheets/ui.scss';
+import Terrain from 'react-icons';
 
 const percentToDecimal = (decimal) => {
     return ((decimal * 100) + '%');
