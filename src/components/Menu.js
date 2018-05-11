@@ -1,7 +1,7 @@
 import { Link } from 'react-router';
 import HomeIcon from 'react-icons/lib/fa/home';
 import AddDayIcon from 'react-icons/lib/fa/calendar-plus-o';
-import ListDayIcon from 'react-icon/lib/fa/table';
+import ListDayIcon from 'react-icons/lib/fa/table';
 
 export const Menu = () => 
     <nav className="menu">
