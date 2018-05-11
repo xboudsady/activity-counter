@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { SkiDayList } from './SkiDayList';
 import { SkiDayCount } from './SkiDayCount';
 import { AddDayForm } from './AddDayForm';
-import { Menu } from './Menu'
+import { Menu } from './Menu';
 
 export class App extends Component {
     constructor(props) {
@@ -48,7 +48,8 @@ export class App extends Component {
                              )} /> : 
             (this.props.location.pathname === "/add-day") ?
                 <AddDayForm /> :
-                <SkiDayList days={this.state.allSkiDays} />
+                <SkiDayList days={this.state.allSkiDays}
+                            filter={this.props.params.filter} />
             }  
             </div>
         )
