@@ -1,59 +1,59 @@
-import { PropTypes, Component } from 'react';
+import { PropTypes } from 'react';
 
-export class AddDayForm extends Component {
+export const AddDayForm = ({ resort, date, powder, backcountry, onNewDay }) => {
+    
+    let _resort, _date, _powder, _backcountry
 
-    constructor(props) {
-        super(props);
-        this.submit = this.submit.bind(this);
+    const submit = (e) => {
+        e.preventDefault();
+        onNewDay({
+            resort: _resort.value,
+            date: _date.value,
+            powder: _powder.checked,
+            backcountry: _backcountry.checked
+        });
+        _resort.value = '';
+        _date.value = '';
+        _powder.value = false;
+        _backcountry.value = false;
     }
 
-    submit(e) {
-        e.preventDefault()
-        console.log('resort', this.refs.resort.value);
-        console.log('date', this.refs.date.value);
-        console.log('powder', this.refs.powder.checked);
-        console.log('backcountry', this.refs.backcountry.checked);
-    }
+    return (
+        <form onSubmit={submit} className="add-day-form">
+            <label htmlFor="resort">Resort Name</label>
+            <input id="resort" 
+                    type="text" 
+                    required
+                    defaultValue={resort}
+                    ref={input => _resort = input} />
 
-    render() {
+            <label htmlFor="date">Date</label>
+            <input id="date" 
+                    type="date" 
+                    required
+                    defaultValue={date}
+                    ref={input => _date = input} />
+            
+            <div>
+                <input id="powder" 
+                        type="checkbox"
+                        defaultChecked={powder}
+                        ref="powder"
+                        ref={input => _powder = input} />
+                <label htmlFor="powder">Powder Day</label>
+            </div>
 
-        const { resort, date, powder, backcountry } = this.props;
-
-        return (
-            <form onSubmit={this.submit} className="add-day-form">
-                <label htmlFor="resort">Resort Name</label>
-                <input id="resort" 
-                        type="text" 
-                        required
-                        defaultValue={resort}
-                        ref="resort" />
-
-                <label htmlFor="date">Date</label>
-                <input id="date" 
-                        type="date" 
-                        required
-                        defaultValue={date}
-                        ref="date" />
-                
-                <div>
-                    <input id="powder" 
-                            type="checkbox"
-                            defaultChecked={powder}
-                            ref="powder" />
-                    <label htmlFor="powder">Powder Day</label>
-                </div>
-
-                <div>
-                    <input id="backcountry" 
-                            type="checkbox"
-                            defaultChecked={backcountry}
-                            ref="backcountry" />
-                    <label htmlFor="backcountry">Backcountry Day</label>
-                </div>
-                <button>Add Day</button>
-            </form>
-        )
-    }
+            <div>
+                <input id="backcountry" 
+                        type="checkbox"
+                        defaultChecked={backcountry}
+                        ref="backcountry"
+                        ref={input => _backcountry = input} />
+                <label htmlFor="backcountry">Backcountry Day</label>
+            </div>
+            <button>Add Day</button>
+        </form>
+    )
 }
 
 AddDayForm.defaultProps = {
